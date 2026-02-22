@@ -67,7 +67,7 @@ uint64_t nPrime(uint64_t n) {
 }
 
 uint64_t nextPrime(uint64_t value) {
-    if (value == MAXVAL ) {
+    if (value == MAXVAL) {
         throw std::overflow_error(
             "Input value is already uint64_t max, next prime cannot be found");
     }
