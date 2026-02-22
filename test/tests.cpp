@@ -58,7 +58,7 @@ TEST(NextPrimeTest, Logic) {
     // После простых
     EXPECT_EQ(nextPrime(2), 3);
     EXPECT_EQ(nextPrime(11), 13);
-    
+
     // После составных
     EXPECT_EQ(nextPrime(4), 5);
     EXPECT_EQ(nextPrime(14), 17);
@@ -66,8 +66,10 @@ TEST(NextPrimeTest, Logic) {
 }
 
 TEST(NextPrimeTest, OverflowHandling) {
-    EXPECT_THROW(nextPrime(std::numeric_limits<uint64_t>::max()), std::overflow_error);
-    EXPECT_THROW(nextPrime(std::numeric_limits<uint64_t>::max() - 1), std::overflow_error);
+    uint64_t upperBound = std::numeric_limits<uint64_t>::max();
+
+    EXPECT_THROW(nextPrime(upperBound), std::overflow_error);
+    EXPECT_THROW(nextPrime(upperBound - 1), std::overflow_error);
 }
 
 // ==========================================

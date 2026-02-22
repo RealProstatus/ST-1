@@ -5,12 +5,13 @@
 
 #include "alg.h"
 
-using namespace std;
+using std::invalid_argument;
+using std::numeric_limits;
+using std::overflow_error;
 
 #define MAXVAL numeric_limits<uint64_t>::max()
 
-namespace
-{
+namespace {
 void checkAdditionOverflow(uint64_t a, uint64_t b) {
     if (a > MAXVAL - b) {
         throw overflow_error("Prime sum overflow detected");
@@ -54,19 +55,21 @@ uint64_t nPrime(uint64_t n) {
                 return candidate;
             }
         }
-        
+
         if (candidate == MAXVAL) {
-            throw overflow_error("Cannot find prime: search overflowed uint64_t");
+            throw overflow_error(
+                "Cannot find prime: search overflowed uint64_t");
         }
         candidate++;
     }
-    
+
     return 0;
 }
 
 uint64_t nextPrime(uint64_t value) {
     if (value == MAXVAL ) {
-        throw std::overflow_error("Input value is already uint64_t max, next prime cannot be found");
+        throw std::overflow_error(
+            "Input value is already uint64_t max, next prime cannot be found");
     }
 
     uint64_t candidate = value + 1;
@@ -85,7 +88,7 @@ uint64_t nextPrime(uint64_t value) {
 
 uint64_t sumPrime(uint64_t hbound) {
     uint64_t sum = 0;
-    
+
     if (hbound > 2) {
         sum = 2;
     }
@@ -96,6 +99,6 @@ uint64_t sumPrime(uint64_t hbound) {
             sum += i;
         }
     }
-    
+
     return sum;
 }
